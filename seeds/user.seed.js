@@ -5,7 +5,18 @@ import User from "../models/user.model.js";
 import Bcrypt from 'bcrypt';
 
 import dotenv from 'dotenv';
+
 dotenv.config();
+
+const urlDB = process.env.URL_DB;
+const portDB = process.env.PORT_DB;
+const nameDB = process.env.NAME_DB;
+
+connectDatabase(urlDB, portDB, nameDB);
+
+mongoose.connection.dropCollection('users', (err, result) => {
+    console.log("*** users collection deleted ***");
+})
 
 const saltRounds = parseInt(process.env.SALT_ROUNDS);
 
@@ -25,18 +36,9 @@ const users = [
         username: "admin",
         email: "admin@blockbuster.com",
         password: adminPasswordHashed,
+        role: "ADMIN"
     }),
 ];
-
-const urlDB = process.env.URL_DB;
-const portDB = process.env.PORT_DB;
-const nameDB = process.env.NAME_DB;
-
-connectDatabase(urlDB, portDB, nameDB);
-
-mongoose.connection.dropCollection('users', (err, result) => {
-    console.log("*** users collection deleted ***");
-})
 
 let count = 0;
 

@@ -7,8 +7,8 @@ const ROLES = Object.freeze({
 
 const userSchema = mongoose.Schema({
     username: { type: String },
-    email: { String },
-    password: { String },
+    email: { type: String },
+    password: { type: String },
     role: { type: String, enum: Object.values(ROLES), default: 'USER' },
 }, {
     timestamps: {
