@@ -1,0 +1,18 @@
+[
+  {
+    "username": "rubenfs",
+    "email": "rubenfs@blockbuster.com",
+    "password": ""
+  },
+  {
+    "username": "pablocd",
+    "email": "pablocd@blockbuster.com",
+    "password": ""
+  },
+  {
+    "username": "admin",
+    "email": "admin@blockbuster.com",
+    "password": "",
+    "role": "ADMIN"
+  }
+]

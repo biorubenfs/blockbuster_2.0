@@ -4,6 +4,8 @@ import User from "../models/user.model.js";
 
 import Bcrypt from 'bcrypt';
 
+import fs from 'fs';
+
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -26,31 +28,24 @@ const userPasswordHashed = Bcrypt.hashSync(userPassword, saltRounds);
 const adminPassword = "admin";
 const adminPasswordHashed = Bcrypt.hashSync(adminPassword, saltRounds);
 
-const users = [
-    new User({
-        username: "rubenfs",
-        email: "rubenfs@blockbuster.com",
-        password: userPasswordHashed,
-    }),
-    new User({
-        username: "pablocd",
-        email: "pablocd@blockbuster.com",
-        password: userPasswordHashed,
-    }),
-    new User({
-        username: "admin",
-        email: "admin@blockbuster.com",
-        password: adminPasswordHashed,
-        role: "ADMIN"
-    }),
-];
+const rawData = fs.readFileSync('./seeds/raw_data/users.json');
+const users = JSON.parse(rawData);
+
+users.forEach(user => {
+    if (user.role === "ADMIN") {
+        user.password = adminPasswordHashed;
+    } else {
+        user.password = userPasswordHashed;
+    }
+});
 
 let count = 0;
 
 for (const user of users) {
-    await user.save(user);
+    let userObject = new User(user);
+    await userObject.save();
     count++;
-};
+}
 
 if (count === users.length) {
     console.log("*** users planted succesfully ***");
