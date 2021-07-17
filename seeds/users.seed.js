@@ -33,6 +33,11 @@ const users = [
         password: userPasswordHashed,
     }),
     new User({
+        username: "pablocd",
+        email: "pablocd@blockbuster.com",
+        password: userPasswordHashed,
+    }),
+    new User({
         username: "admin",
         email: "admin@blockbuster.com",
         password: adminPasswordHashed,
