@@ -4,8 +4,10 @@ import dotenv from 'dotenv';
 import connectDatabase from './config/db_connection.js';
 
 import morgan from 'morgan';
+import cors from 'cors';
 
 import moviesRoutes from './routes/movies.routes.js';
+import signupRoutes from './routes/signup.routes.js';
 
 // Init dotenv
 dotenv.config();
@@ -31,8 +33,12 @@ app.use(morgan((tokens, req, res) => [
     tokens.status(req, res)
 ].join(' ')));
 
+// Able to receive JSON on body request
+app.use(express.json());
+app.use(cors());
 
 // Master routes
+app.use('/signup', signupRoutes)
 app.use('/movies', moviesRoutes);
 
 app.listen(port, () => {
