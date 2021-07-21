@@ -10,6 +10,7 @@ const userSchema = mongoose.Schema({
     email: { type: String },
     password: { type: String },
     role: { type: String, enum: Object.values(ROLES), default: 'USER' },
+    profile_picture: { type: String }
 }, {
     timestamps: {
         createdAt: 'created_at',

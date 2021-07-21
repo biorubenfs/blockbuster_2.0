@@ -8,6 +8,8 @@ import cors from 'cors';
 
 import moviesRoutes from './routes/movies.routes.js';
 import signupRoutes from './routes/signup.routes.js';
+import userRoutes from './routes/user.routes.js';
+import upload from './config/multer.js';
 
 // Init dotenv
 dotenv.config();
@@ -33,6 +35,11 @@ app.use(morgan((tokens, req, res) => [
     tokens.status(req, res)
 ].join(' ')));
 
+// Testing multer
+// app.post('/upload-file', upload.single('picture'), (req, res) => {
+//     res.send({ message: "photo uploaded", file: req.file });
+// })
+
 // Able to receive JSON on body request
 app.use(express.json());
 app.use(cors());
@@ -40,6 +47,7 @@ app.use(cors());
 // Master routes
 app.use('/signup', signupRoutes)
 app.use('/movies', moviesRoutes);
+app.use('/users', userRoutes);
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);

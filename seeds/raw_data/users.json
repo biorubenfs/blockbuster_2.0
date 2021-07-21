@@ -2,12 +2,14 @@
   {
     "username": "rubenfs",
     "email": "rubenfs@blockbuster.com",
-    "password": ""
+    "password": "",
+    "profile_picture": "assets/profile_pictures/profile_picture_1.jpeg"
   },
   {
     "username": "pablocd",
     "email": "pablocd@blockbuster.com",
-    "password": ""
+    "password": "",
+    "profile_picture": "assets/profile_pictures/profile_picture_2.jpeg"
   },
   {
     "username": "admin",
