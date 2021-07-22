@@ -9,5 +9,6 @@ const userRoutes = Router();
 // })
 
 userRoutes.post('/:id', upload.single('profile_picture'), userController.updateUser);
+userRoutes.get('/me', userController.userDetails);
 
 export default userRoutes;

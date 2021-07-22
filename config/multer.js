@@ -8,8 +8,10 @@ const storage = multer.diskStorage({
     filename: (req, file, cb) => {
         cb(null, Date.now() + file.originalname, req.next)
     }
-})
+});
 
-const upload = multer({ storage });
+const fileSize = process.env.MAX_FILE_SIZE;
+
+const upload = multer({ storage }, { fileSize: fileSize });
 
 export default upload;

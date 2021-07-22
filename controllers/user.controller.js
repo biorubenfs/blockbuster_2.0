@@ -5,6 +5,8 @@ export const userController = {
 
     updateUser: async (req, res) => {
 
+        // ToDo: Add everything in a tryCatch block
+
         const username = req.body.username;
 
         let password;
@@ -21,5 +23,9 @@ export const userController = {
         const user = await User.findByIdAndUpdate({ _id: req.params.id }, body, { new: true });
 
         res.status(200).json(user);
+    },
+
+    userDetails: async (req, res) => {
+
     }
 }
