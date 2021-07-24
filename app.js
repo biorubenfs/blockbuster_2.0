@@ -10,6 +10,7 @@ import moviesRoutes from './routes/movies.routes.js';
 import signupRoutes from './routes/signup.routes.js';
 import userRoutes from './routes/user.routes.js';
 import signinRoutes from './routes/signin.routes.js';
+import adminRoutes from './routes/admin.routes.js';
 
 // Init dotenv
 dotenv.config();
@@ -46,6 +47,9 @@ app.use('/signup', signupRoutes)
 app.use('/movies', moviesRoutes);
 app.use('/users', userRoutes);
 app.use('/signin', signinRoutes);
+
+// ToDo add checkadmin middleware
+app.use('/admin', adminRoutes);
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);

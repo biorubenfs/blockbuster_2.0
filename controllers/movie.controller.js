@@ -94,20 +94,5 @@ export const movieController = {
         } catch (error) {
             res.status(400).json({ message: error.message });
         }
-    },
-
-    addMovie: async (req, res) => {
-        // ToDo
-        console.log("return the new movie");
-    },
-
-    updateMovie: async (req, res) => {
-        // ToDo
-        console.log("return the updated movie");
-    },
-
-    deleteMovie: async (req, res) => {
-        // ToDo
-        console.log("return the movie deleted");
     }
 };
