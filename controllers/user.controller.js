@@ -1,41 +1,36 @@
 import User from '../models/user.model.js';
 import Bcrypt from 'bcrypt';
+import { formatUser } from '../utils/utils.js'
 
 
-const formatUser = (user) => {
-
-    // Here que use toJSON, because we didn't use .lean in mongoose query
-    const fmt = user.toJSON();
-
-    delete fmt.created_at;
-    delete fmt.updated_at;
-    delete fmt.__v;
-
-    return fmt;
-}
 
 export const userController = {
 
     updateUser: async (req, res) => {
 
-        // ToDo: Add everything in a tryCatch block
+        try {
 
-        const username = req.body.username;
+            const userId = req.token.id;
+            const username = req.body.username;
+            let password;
 
-        let password;
-        if (req.body.password) {
-            password = Bcrypt.hashSync(req.body.password, parseInt(process.env.SALT_ROUNDS));
+            if (req.body.password) {
+                password = Bcrypt.hashSync(req.body.password, parseInt(process.env.SALT_ROUNDS));
+            }
+
+            const body = {};
+
+            if (username) { body.username = username }
+            if (password) { body.password = password }
+            if (req.file.path) { body.profile_picture = req.file.path }
+
+            const user = await User.findByIdAndUpdate(userId, body, { new: true });
+
+            res.status(200).json(formatUser(user));
+
+        } catch (error) {
+            res.json({ message: error.message });
         }
-
-        const body = {};
-
-        if (username) { body.username = username }
-        if (password) { body.password = password }
-        if (req.file.path) { body.profile_picture = req.file.path }
-
-        const user = await User.findByIdAndUpdate({ _id: req.params.id }, body, { new: true });
-
-        res.status(200).json(user);
     },
 
     userDetails: async (req, res) => {

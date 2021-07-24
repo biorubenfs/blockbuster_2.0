@@ -6,6 +6,7 @@ const adminRoutes = Router();
 // Add checkAdmin Middleware
 
 adminRoutes.post('/user', adminController.createUser);
+adminRoutes.get('/user', adminController.listUsers);
 
 adminRoutes.post('/movie/', adminController.addMovie);
 adminRoutes.put('/movie/:id', adminController.updateMovie);

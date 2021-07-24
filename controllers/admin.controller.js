@@ -1,6 +1,8 @@
 import Movie from "../models/movie.model.js";
 import User from '../models/user.model.js';
 
+import { formatUser } from '../utils/utils.js'
+
 import Bcrypt from 'bcrypt';
 
 export const adminController = {
@@ -31,6 +33,36 @@ export const adminController = {
             await User.create(newUser);
 
             res.status(200).json(newUser);
+
+        } catch (error) {
+            res.status(400).json({ message: error.message });
+        }
+    },
+
+    listUsers: async (req, res) => {
+
+        try {
+
+            // Convert string to boolean
+            const admin = JSON.parse(req.query.admin);
+            const user = JSON.parse(req.query.user);
+
+            let users;
+
+            if (admin && user) {
+                // const users = await User.find().sort('-created_at');
+                users = await User.find().sort({ created_at: 1 });
+            };
+
+            if (admin && !user) {
+                users = await User.find({ role: 'ADMIN' }).sort({ created_at: 1 });
+            };
+
+            if (!admin && user) {
+                users = await User.find({ role: 'USER' }).sort({ created_at: 1 });
+            };
+
+            res.json(users.map(formatUser));
 
         } catch (error) {
             res.status(400).json({ message: error.message });

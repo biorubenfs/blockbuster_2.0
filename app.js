@@ -47,11 +47,12 @@ app.use(cors());
 // Master routes
 app.use('/signup', signupRoutes)
 app.use('/movies', moviesRoutes);
-app.use('/users', checkJWT, userRoutes);
+app.use('/user', checkJWT, userRoutes);
 app.use('/signin', signinRoutes);
 
 // ToDo add checkadmin middleware
 app.use('/admin', checkJWT, checkAdmin, adminRoutes);
+// app.use('/admin', adminRoutes);
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
