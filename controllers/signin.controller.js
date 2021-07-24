@@ -8,9 +8,6 @@ export const signinController = {
 
         try {
 
-            console.log(req.body);
-
-            const username = req.body.username;
             const email = req.body.email;
             const password = req.body.password;
 
@@ -20,7 +17,7 @@ export const signinController = {
                 return res.json({ message: 'Incorrect password or email [email]' });
             }
             if (!Bcrypt.compareSync(password, queryUser.password)) {
-                return res.json({ message: 'Incorrect password or email [email]' });
+                return res.json({ message: 'Incorrect password or email [password]' });
             };
 
             const payload = {

@@ -27,6 +27,8 @@ connectDatabase(urldb, portdb, namedb);
 // Initialize Express
 const app = express();
 
+
+
 // Tracking endpoints with morgan
 app.use(morgan((tokens, req, res) => [
     new Date().toDateString(),
