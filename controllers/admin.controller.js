@@ -9,8 +9,6 @@ export const adminController = {
 
     createUser: async (req, res) => {
 
-        console.log(req.body);
-
         try {
 
             const username = req.body.username;

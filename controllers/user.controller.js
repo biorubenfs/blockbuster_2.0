@@ -1,6 +1,19 @@
 import User from '../models/user.model.js';
 import Bcrypt from 'bcrypt';
 
+
+const formatUser = (user) => {
+
+    // Here que use toJSON, because we didn't use .lean in mongoose query
+    const fmt = user.toJSON();
+
+    delete fmt.created_at;
+    delete fmt.updated_at;
+    delete fmt.__v;
+
+    return fmt;
+}
+
 export const userController = {
 
     updateUser: async (req, res) => {
@@ -27,5 +40,15 @@ export const userController = {
 
     userDetails: async (req, res) => {
 
+        try {
+
+            const user = await User.findById(req.token.id, { password: 0 });
+            console.log(user);
+
+            res.json(formatUser(user));
+
+        } catch (error) {
+            res.status(400).json({ message: error.message });
+        }
     }
 }

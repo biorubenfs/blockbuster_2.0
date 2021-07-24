@@ -47,7 +47,7 @@ app.use(cors());
 // Master routes
 app.use('/signup', signupRoutes)
 app.use('/movies', moviesRoutes);
-app.use('/users', userRoutes);
+app.use('/users', checkJWT, userRoutes);
 app.use('/signin', signinRoutes);
 
 // ToDo add checkadmin middleware
