@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 
 const checkJWT = (req, res, next) => {
 
-    console.log(req.headers);
+    console.log(req.headers.authorization);
 
     let rawToken;
 
