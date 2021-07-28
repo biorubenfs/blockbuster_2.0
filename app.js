@@ -11,6 +11,8 @@ import signupRoutes from './routes/signup.routes.js';
 import userRoutes from './routes/user.routes.js';
 import signinRoutes from './routes/signin.routes.js';
 import adminRoutes from './routes/admin.routes.js';
+import orderRoutes from './routes/order.routes.js';
+
 import checkJWT from './middlewares/checkJWT.js';
 import checkAdmin from './middlewares/checkAdmin.js';
 
@@ -30,8 +32,6 @@ connectDatabase(urldb, portdb, namedb);
 // Initialize Express
 const app = express();
 
-
-
 // Tracking endpoints with morgan
 app.use(morgan((tokens, req, res) => [
     new Date().toDateString(),
@@ -49,10 +49,10 @@ app.use('/signup', signupRoutes)
 app.use('/movies', moviesRoutes);
 app.use('/user', checkJWT, userRoutes);
 app.use('/signin', signinRoutes);
+app.use('/orders', checkJWT, orderRoutes)
 
-// ToDo add checkadmin middleware
+// amdin routes
 app.use('/admin', checkJWT, checkAdmin, adminRoutes);
-// app.use('/admin', adminRoutes);
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);

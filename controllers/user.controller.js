@@ -2,8 +2,6 @@ import User from '../models/user.model.js';
 import Bcrypt from 'bcrypt';
 import { formatUser } from '../utils/utils.js'
 
-
-
 export const userController = {
 
     updateUser: async (req, res) => {
@@ -29,7 +27,7 @@ export const userController = {
             res.status(200).json(formatUser(user));
 
         } catch (error) {
-            res.json({ message: error.message });
+            res.status(400).json({ message: error.message });
         }
     },
 
@@ -41,6 +39,18 @@ export const userController = {
             console.log(user);
 
             res.json(formatUser(user));
+
+        } catch (error) {
+            res.status(400).json({ message: error.message });
+        }
+    },
+
+    deleteUser: async (req, res) => {
+
+        try {
+
+            const userDeleted = await User.findByIdAndDelete(req.token.id);
+            res.json(formatUser(userDeleted));
 
         } catch (error) {
             res.status(400).json({ message: error.message });

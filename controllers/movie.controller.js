@@ -18,7 +18,7 @@ export const movieController = {
     listMovies: async (req, res) => {
         try {
             const allMovies = await Movie.find();
-            res.json(allMovies);
+            res.json(allMovies.map(formatMovie));
         } catch (error) {
             req.status(400).json({ message: error.message });
         }
@@ -55,7 +55,7 @@ export const movieController = {
                 }
             });
 
-            res.status(200).json(query);
+            res.status(200).json(query.map(formatMovie));
         } catch (error) {
             req.json({ message: error.message });
         };
@@ -67,7 +67,7 @@ export const movieController = {
 
         try {
             const results = await Movie.find({ genres_ids: genreId });
-            res.json(results);
+            res.json(results.map(formatMovie));
         } catch (error) {
             res.status(400).json({ message: error.message });
         }

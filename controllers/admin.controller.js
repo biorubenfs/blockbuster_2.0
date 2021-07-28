@@ -1,5 +1,6 @@
 import Movie from "../models/movie.model.js";
 import User from '../models/user.model.js';
+import Order from '../models/order.model.js';
 
 import { formatUser } from '../utils/utils.js'
 
@@ -9,6 +10,7 @@ export const adminController = {
 
     /** USER METHODS */
 
+    // Create regular or admin
     createUser: async (req, res) => {
 
         try {
@@ -37,6 +39,16 @@ export const adminController = {
         } catch (error) {
             res.status(400).json({ message: error.message });
         }
+    },
+
+    updateUser: async (req, res) => {
+        // ToDo
+        console.log("return the updated user");
+    },
+
+    deleteUser: async (req, res) => {
+        // ToDo
+        console.log("return the deleted user");
     },
 
     listUsers: async (req, res) => {
@@ -81,7 +93,24 @@ export const adminController = {
     },
 
     deleteMovie: async (req, res) => {
-        // ToDo
-        console.log("return the movie deleted");
-    }
+        //ToDo
+        console.log("return the delete movie");
+    },
+
+    /** ORDERS METHODS */
+
+    getAllOrders: async (req, res) => {
+
+        try {
+
+            const results = await Order.find();
+
+            res.json(results);
+
+        } catch (error) {
+
+            res.status(400).json({ message: error.message });
+
+        }
+    },
 }

@@ -3,13 +3,15 @@ import { adminController } from '../controllers/admin.controller.js'
 
 const adminRoutes = Router();
 
-// Add checkAdmin Middleware
-
 adminRoutes.post('/user', adminController.createUser);
 adminRoutes.get('/user', adminController.listUsers);
+adminRoutes.put('/user', adminController.updateUser);
+adminRoutes.delete('user', adminController.deleteUser);
 
 adminRoutes.post('/movie/', adminController.addMovie);
 adminRoutes.put('/movie/:id', adminController.updateMovie);
 adminRoutes.delete('/movie/:id', adminController.deleteMovie);
+
+adminRoutes.get('/order', adminController.getAllOrders);
 
 export default adminRoutes;
