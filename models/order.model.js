@@ -15,8 +15,8 @@ const orderSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'movies',
     },
-    start_date: { type: String },
-    end_date: { type: String },
+    start_date: { type: Date },
+    end_date: { type: Date },
     status: { type: String, enum: Object.values(STATUS), default: 'ACTIVE' }
 }, {
     timestamps: {

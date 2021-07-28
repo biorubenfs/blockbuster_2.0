@@ -4,6 +4,24 @@ import Movie from '../models/movie.model.js';
 
 export const orderController = {
 
+    cronUpdatedOrder: async () => {
+
+        const orders = await Order.find();
+
+        for await (const order of orders) {
+
+            const today = new Date();
+            const foo = new Date(order.end_date)
+
+            if (foo < today) {
+                order.status = 'EXPIRED';
+                order.save();
+                console.log('El objeto se ha actualizado');
+            }
+
+        }
+    },
+
     createOrder: async (req, res) => {
 
         try {

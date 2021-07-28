@@ -5,6 +5,7 @@ import connectDatabase from './config/db_connection.js';
 
 import morgan from 'morgan';
 import cors from 'cors';
+import cron from 'node-cron';
 
 import moviesRoutes from './routes/movies.routes.js';
 import signupRoutes from './routes/signup.routes.js';
@@ -15,6 +16,8 @@ import orderRoutes from './routes/order.routes.js';
 
 import checkJWT from './middlewares/checkJWT.js';
 import checkAdmin from './middlewares/checkAdmin.js';
+
+import { orderController } from './controllers/order.controller.js';
 
 // Init dotenv
 dotenv.config();
@@ -53,6 +56,8 @@ app.use('/orders', checkJWT, orderRoutes)
 
 // amdin routes
 app.use('/admin', checkJWT, checkAdmin, adminRoutes);
+
+cron.schedule('* 23 * * *', orderController.cronUpdatedOrder);
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
