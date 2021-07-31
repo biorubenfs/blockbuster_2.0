@@ -48,7 +48,9 @@ export const orderController = {
                 end_date: endDate.toISOString(),
             }
 
-            res.json(await Order.create(newOrder));
+            const result = await Order.create(newOrder);
+
+            res.json(formatObject(result));
 
         } catch (error) {
             res.send(400).json({ message: error.message });
@@ -79,7 +81,7 @@ export const orderController = {
 
             const order = await Order.findOne({ _id: orderId, user_id: userId });
 
-            res.json(order);
+            res.json(formatObject(order));
 
         } catch (error) {
             res.status(400).json({ message: error.message });
@@ -98,7 +100,7 @@ export const orderController = {
             res.json(newStatus);
 
         } catch (error) {
-
+            res.status(400).json({ message: error.message });
         }
     }
 }

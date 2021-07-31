@@ -57,7 +57,7 @@ app.use('/orders', checkJWT, orderRoutes)
 // admin routes
 app.use('/admin', checkJWT, checkAdmin, adminRoutes);
 
-// cron job to change order status
+// cron job to update order status
 cron.schedule('* 23 * * *', orderController.cronUpdatedOrder);
 
 app.listen(port, () => {

@@ -10,7 +10,7 @@ export const adminController = {
 
     /** USER METHODS */
 
-    // Create regular or admin
+    // Create regular or admin user
     createUser: async (req, res) => {
 
         try {
@@ -53,6 +53,9 @@ export const adminController = {
 
     listUsers: async (req, res) => {
 
+        // example of petition in postman
+        // http://localhost:3000/admin/user?admin=true&user=false   => it returns admin users
+
         try {
 
             // Convert string to boolean
@@ -64,15 +67,13 @@ export const adminController = {
             if (admin && user) {
                 // const users = await User.find().sort('-created_at');
                 users = await User.find().sort({ created_at: 1 });
-            };
-
-            if (admin && !user) {
+            } else if (admin && !user) {
                 users = await User.find({ role: 'ADMIN' }).sort({ created_at: 1 });
-            };
-
-            if (!admin && user) {
+            } else if (!admin && user) {
                 users = await User.find({ role: 'USER' }).sort({ created_at: 1 });
-            };
+            } else {
+                users = [];
+            }
 
             res.json(users.map(formatObject));
 

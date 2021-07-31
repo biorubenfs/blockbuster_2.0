@@ -13,8 +13,6 @@ export const movieController = {
 
             res.json(result);
 
-
-            // res.json(allMovies.map(formatMovie));
         } catch (error) {
             req.status(400).json({ message: error.message });
         }
