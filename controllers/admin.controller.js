@@ -103,9 +103,12 @@ export const adminController = {
 
         try {
 
-            const results = await Order.find();
+            const results = await Order.find().populate('user_id', ['email', 'username']).populate('movie_id', 'title');
 
-            res.json(results);
+            // Another way to do the same task
+            // const results = await Order.find().populate({ path: 'user_id', select: ['email', 'username'] });
+
+            res.json(results.map(formatObject));
 
         } catch (error) {
 

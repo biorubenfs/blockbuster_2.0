@@ -2,6 +2,8 @@ import Order from '../models/order.model.js';
 import User from '../models/user.model.js';
 import Movie from '../models/movie.model.js';
 
+import { formatObject } from '../utils/utils.js';
+
 export const orderController = {
 
     cronUpdatedOrder: async () => {
@@ -59,9 +61,9 @@ export const orderController = {
 
             const userId = req.token.id;
 
-            const results = await Order.find({ user_id: userId });
+            const results = await Order.find({ user_id: userId }).select({ '_id': 0 }).populate('movie_id', 'title');
 
-            res.json(results);
+            res.json(results.map(formatObject));
 
         } catch (error) {
             res.status(400).json({ message: error.message });
