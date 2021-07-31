@@ -2,7 +2,7 @@ import Movie from "../models/movie.model.js";
 import User from '../models/user.model.js';
 import Order from '../models/order.model.js';
 
-import { formatUser } from '../utils/utils.js'
+import { formatObject } from "../utils/utils.js";
 
 import Bcrypt from 'bcrypt';
 
@@ -74,7 +74,7 @@ export const adminController = {
                 users = await User.find({ role: 'USER' }).sort({ created_at: 1 });
             };
 
-            res.json(users.map(formatUser));
+            res.json(users.map(formatObject));
 
         } catch (error) {
             res.status(400).json({ message: error.message });

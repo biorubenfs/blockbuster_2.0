@@ -1,26 +1,7 @@
 import Movie from '../models/movie.model.js';
 import Genre from '../models/genre.model.js';
 
-import fs from 'fs';
-
-// A simple method to format movie without some attributes
-const formatMovie = (movie) => {
-
-    /** 
-     * This is neccessary in order to transform the mongoose object to plant JS object.
-     * Alternatively, you can do .lean() after query, in order to convert the mongoose object
-     * to javascript plain objet. In this way you can remove the movie.toJSON() and use the
-     * movie object as js regular object.
-     * */
-
-    const fmt = movie.toJSON();
-
-    delete fmt.__v;
-    delete fmt.created_at;
-    delete fmt.updated_at;
-
-    return fmt;
-}
+import { formatObject } from '../utils/utils.js';
 
 export const movieController = {
 
@@ -28,7 +9,7 @@ export const movieController = {
         try {
             const allMovies = await Movie.find();
 
-            const result = allMovies.map(formatMovie);
+            const result = allMovies.map(formatObject);
 
             res.json(result);
 
@@ -47,7 +28,7 @@ export const movieController = {
             if (!result) {
                 res.status(404).send({ message: "movie not found" });
             }
-            res.json(formatMovie(result));
+            res.json(formatObject(result));
 
         } catch (error) {
             res.json({ message: error.message });
@@ -70,7 +51,7 @@ export const movieController = {
                 }
             });
 
-            res.status(200).json(query.map(formatMovie));
+            res.status(200).json(query.map(formatObject));
         } catch (error) {
             req.json({ message: error.message });
         };
@@ -104,7 +85,7 @@ export const movieController = {
             }
             const results = await Movie.find({ genres_ids: genre.id })
 
-            res.json(results);
+            res.json(results.map(formatObject));
 
         } catch (error) {
             res.status(400).json({ message: error.message });

@@ -1,6 +1,6 @@
 import User from '../models/user.model.js';
 import Bcrypt from 'bcrypt';
-import { formatUser } from '../utils/utils.js'
+import { formatObject } from '../utils/utils.js'
 
 export const userController = {
 
@@ -24,7 +24,7 @@ export const userController = {
 
             const user = await User.findByIdAndUpdate(userId, body, { new: true });
 
-            res.status(200).json(formatUser(user));
+            res.status(200).json(formatObject(user));
 
         } catch (error) {
             res.status(400).json({ message: error.message });
@@ -38,7 +38,7 @@ export const userController = {
             const user = await User.findById(req.token.id, { password: 0 });
             console.log(user);
 
-            res.json(formatUser(user));
+            res.json(formatObject(user));
 
         } catch (error) {
             res.status(400).json({ message: error.message });
@@ -50,7 +50,7 @@ export const userController = {
         try {
 
             const userDeleted = await User.findByIdAndDelete(req.token.id);
-            res.json(formatUser(userDeleted));
+            res.json(formatObject(userDeleted));
 
         } catch (error) {
             res.status(400).json({ message: error.message });
