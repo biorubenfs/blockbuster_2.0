@@ -6,19 +6,24 @@ export const orderController = {
 
     cronUpdatedOrder: async () => {
 
-        const orders = await Order.find();
+        try {
+            const orders = await Order.find({ status: 'ACTIVE' });
 
-        for await (const order of orders) {
+            for await (const order of orders) {
 
-            const today = new Date();
-            const foo = new Date(order.end_date)
+                const today = new Date();
+                const foo = new Date(order.end_date)
 
-            if (foo < today) {
-                order.status = 'EXPIRED';
-                order.save();
-                console.log('El objeto se ha actualizado');
+                if (foo < today) {
+                    order.status = 'EXPIRED';
+                    order.save();
+                    console.log(`Order ${order._id} has change its status to EXPIRED`);
+                }
+
             }
 
+        } catch (error) {
+            console.log(`Order status could not be updated. Error: ${error.message}`);
         }
     },
 
@@ -64,8 +69,6 @@ export const orderController = {
     },
 
     getOrder: async (req, res) => {
-
-        console.log(req.token.id);
 
         try {
 

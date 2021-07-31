@@ -54,9 +54,10 @@ app.use('/user', checkJWT, userRoutes);
 app.use('/signin', signinRoutes);
 app.use('/orders', checkJWT, orderRoutes)
 
-// amdin routes
+// admin routes
 app.use('/admin', checkJWT, checkAdmin, adminRoutes);
 
+// cron job to change order status
 cron.schedule('* 23 * * *', orderController.cronUpdatedOrder);
 
 app.listen(port, () => {

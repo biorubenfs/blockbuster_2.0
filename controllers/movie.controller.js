@@ -6,11 +6,20 @@ import fs from 'fs';
 // A simple method to format movie without some attributes
 const formatMovie = (movie) => {
 
-    delete movie.__v;
-    delete movie.created_at;
-    delete movie.updated_at;
+    /** 
+     * This is neccessary in order to transform the mongoose object to plant JS object.
+     * Alternatively, you can do .lean() after query, in order to convert the mongoose object
+     * to javascript plain objet. In this way you can remove the movie.toJSON() and use the
+     * movie object as js regular object.
+     * */
 
-    return movie;
+    const fmt = movie.toJSON();
+
+    delete fmt.__v;
+    delete fmt.created_at;
+    delete fmt.updated_at;
+
+    return fmt;
 }
 
 export const movieController = {
@@ -18,7 +27,13 @@ export const movieController = {
     listMovies: async (req, res) => {
         try {
             const allMovies = await Movie.find();
-            res.json(allMovies.map(formatMovie));
+
+            const result = allMovies.map(formatMovie);
+
+            res.json(result);
+
+
+            // res.json(allMovies.map(formatMovie));
         } catch (error) {
             req.status(400).json({ message: error.message });
         }
@@ -27,7 +42,7 @@ export const movieController = {
     findMovieById: async (req, res) => {
 
         try {
-            const result = await Movie.findById(req.params.id).lean();
+            const result = await Movie.findById(req.params.id);
 
             if (!result) {
                 res.status(404).send({ message: "movie not found" });
