@@ -40,6 +40,9 @@ export const movieController = {
         try {
             const queryTerm = req.query.title;
 
+            console.log(queryTerm);
+            console.log(typeof queryTerm);
+
             // const query = await Movie.find({ title: /${queryTerm}/i });
 
             const query = await Movie.find({
@@ -51,7 +54,7 @@ export const movieController = {
 
             res.status(200).json(query.map(formatObject));
         } catch (error) {
-            req.json({ message: error.message });
+            res.json({ message: error.message });
         };
     },
 
@@ -61,7 +64,7 @@ export const movieController = {
 
         try {
             const results = await Movie.find({ genres_ids: genreId });
-            res.json(results.map(formatMovie));
+            res.json(results.map(formatObject));
         } catch (error) {
             res.status(400).json({ message: error.message });
         }

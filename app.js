@@ -50,7 +50,7 @@ app.use(cors());
 // Master routes
 app.use('/signup', signupRoutes)
 app.use('/movies', moviesRoutes);
-app.use('/user', checkJWT, userRoutes);
+app.use('/users', checkJWT, userRoutes);
 app.use('/signin', signinRoutes);
 app.use('/orders', checkJWT, orderRoutes)
 

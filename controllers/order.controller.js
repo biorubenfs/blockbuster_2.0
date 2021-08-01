@@ -38,6 +38,16 @@ export const orderController = {
             const startDate = new Date();
             const endDate = new Date();
 
+            const user = await User.findById(userId);
+
+            if (!user) {
+                return res.json({ message: 'User doesn\'t exists' });
+            }
+
+            // Todo Check if movie Exists.
+
+            // Check if an order with that movie is currently ACTIVE
+
             endDate.setDate(startDate.getDate() + parseInt(process.env.BASIC_ORDER));
 
             const newOrder = {
@@ -53,17 +63,30 @@ export const orderController = {
             res.json(formatObject(result));
 
         } catch (error) {
-            res.send(400).json({ message: error.message });
+            res.status(400).json({ message: error.message });
         }
     },
 
     listUserOrders: async (req, res) => {
 
+        console.log('here')
+
         try {
 
             const userId = req.token.id;
 
+            const user = await User.findById(userId);
+
+            if (!user) {
+                return res.json({ message: 'User doesn\'t exists' });
+            }
+
             const results = await Order.find({ user_id: userId }).select({ '_id': 0 }).populate('movie_id', 'title');
+            // const results = await Order.find({ user_id: userId }).populate('movie_id', 'title');
+
+            console.log(await Movie.findById(results.movie_id));
+
+            console.log(results);
 
             res.json(results.map(formatObject));
 

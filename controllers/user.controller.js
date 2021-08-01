@@ -6,6 +6,8 @@ export const userController = {
 
     updateUser: async (req, res) => {
 
+        console.log('aque');
+
         try {
 
             const userId = req.token.id;
@@ -35,8 +37,7 @@ export const userController = {
 
         try {
 
-            const user = await User.findById(req.token.id, { password: 0 });
-            console.log(user);
+            const user = await User.findById(req.token.id, { password: 0 }).populate('orders');
 
             res.json(formatObject(user));
 
