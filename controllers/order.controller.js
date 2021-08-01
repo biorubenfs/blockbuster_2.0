@@ -4,6 +4,27 @@ import Movie from '../models/movie.model.js';
 
 import { formatObject } from '../utils/utils.js';
 
+const validateOrder = async (userId, movieId) => {
+
+    const user = await User.findById(userId);
+
+    if (!user) {
+        throw new Error('User doesn\'t exists')
+    };
+
+    const movie = await Movie.findById(movieId);
+
+    if (!movie) {
+        throw new Error('Movie doesn\t exists');
+    };
+
+    const order = await Order.findOne({ movie_id: movieId, status: 'ACTIVE' })
+
+    if (order) {
+        throw new Error('User has already an active order with that movie');
+    }
+}
+
 export const orderController = {
 
     cronUpdatedOrder: async () => {
@@ -38,15 +59,7 @@ export const orderController = {
             const startDate = new Date();
             const endDate = new Date();
 
-            const user = await User.findById(userId);
-
-            if (!user) {
-                return res.json({ message: 'User doesn\'t exists' });
-            }
-
-            // Todo Check if movie Exists.
-
-            // Check if an order with that movie is currently ACTIVE
+            await validateOrder(userId, movieId);
 
             endDate.setDate(startDate.getDate() + parseInt(process.env.BASIC_ORDER));
 
