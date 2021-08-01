@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import connectDatabase from '../config/db_connection.js';
-import Genre from "../models/genre.model.js";
+import Genre from '../models/genre.model.js';
 
 import fs from 'fs';
 
@@ -15,8 +15,8 @@ const nameDB = process.env.NAME_DB;
 connectDatabase(urlDB, portDB, nameDB);
 
 mongoose.connection.dropCollection('genres', (err, result) => {
-    console.log("*** genres collection deleted ***");
-})
+    console.log('*** genres collection deleted ***');
+});
 
 // Reading data from json file
 let rawData = fs.readFileSync('./seeds/raw_data/genres.json');
@@ -28,10 +28,10 @@ for (const genre of genres) {
     let genreObject = new Genre(genre);
     await genreObject.save();
     count++;
-};
+}
 
 if (count === genres.length) {
-    console.log("*** genres planted succesfully ***");
-};
+    console.log('*** genres planted succesfully ***');
+}
 
-mongoose.disconnect()
+mongoose.disconnect();

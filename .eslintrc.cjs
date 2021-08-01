@@ -5,8 +5,8 @@ module.exports = {
         'node': true,
     },
     'extends': 'eslint:recommended',
+    'parser': '@babel/eslint-parser',
     'parserOptions': {
-        'parser': '@babel/eslint-parser',
         'ecmaVersion': 12,
         'sourceType': 'module',
     },

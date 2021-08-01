@@ -51,7 +51,7 @@ const getPeliculas = async () => {
     console.log(movies);
 };
 
-// getPeliculas();
+getPeliculas();
 
 const getGenres = async () => {
     const url = 'https://api.themoviedb.org/3/genre/movie/list?api_key=cea68b520beecac6718820e4ac576c3a&language=es-ES';

@@ -16,19 +16,19 @@ const nameDB = process.env.NAME_DB;
 connectDatabase(urlDB, portDB, nameDB);
 
 mongoose.connection.dropCollection('orders', (err, result) => {
-    console.log("*** orders collection deleted ***");
-})
+    console.log('*** orders collection deleted ***');
+});
 
 // const query = ['Cadena perpetua', 'La lista de Schindler', 'Your name', 'American History X'];
 // const movies = await Movie.find({}).where('title').in(query);
 
-const movie_1 = await Movie.findOne({ title: "Cadena perpetua" });
-const movie_2 = await Movie.findOne({ title: "La lista de Schindler" });
-const movie_3 = await Movie.findOne({ title: "Your name" });
-const movie_4 = await Movie.findOne({ title: "American History X" });
+const movie_1 = await Movie.findOne({ title: 'Cadena perpetua' });
+const movie_2 = await Movie.findOne({ title: 'La lista de Schindler' });
+const movie_3 = await Movie.findOne({ title: 'Your name' });
+const movie_4 = await Movie.findOne({ title: 'American History X' });
 
-const user_1 = await User.findOne({ username: "rubenfs" });
-const user_2 = await User.findOne({ username: "pablocd" });
+const user_1 = await User.findOne({ username: 'rubenfs' });
+const user_2 = await User.findOne({ username: 'pablocd' });
 
 const orders = [
     new Order({
@@ -69,7 +69,7 @@ for (const order of orders) {
 }
 
 if (count === orders.length) {
-    console.log("*** orders planted succesfully ***");
+    console.log('*** orders planted succesfully ***');
 }
 
 mongoose.disconnect();

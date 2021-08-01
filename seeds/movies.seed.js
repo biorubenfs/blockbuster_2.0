@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import connectDatabase from '../config/db_connection.js';
-import Movie from "../models/movie.model.js";
+import Movie from '../models/movie.model.js';
 
 import fs from 'fs';
 
@@ -15,8 +15,8 @@ const nameDB = process.env.NAME_DB;
 connectDatabase(urlDB, portDB, nameDB);
 
 mongoose.connection.dropCollection('movies', (err, result) => {
-    console.log("*** movies collection deleted ***");
-})
+    console.log('*** movies collection deleted ***');
+});
 
 // Reading data from json file
 let rawData = fs.readFileSync('./seeds/raw_data/movies.json');
@@ -28,10 +28,10 @@ for (const movie of movies) {
     let movieObject = new Movie(movie);
     await movieObject.save();
     count++;
-};
+}
 
 if (count === movies.length) {
-    console.log("*** movies planted succesfully ***");
-};
+    console.log('*** movies planted succesfully ***');
+}
 
-mongoose.disconnect()
+mongoose.disconnect();

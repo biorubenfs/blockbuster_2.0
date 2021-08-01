@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import connectDatabase from '../config/db_connection.js';
-import User from "../models/user.model.js";
+import User from '../models/user.model.js';
 
 import Bcrypt from 'bcrypt';
 
@@ -17,22 +17,22 @@ const nameDB = process.env.NAME_DB;
 connectDatabase(urlDB, portDB, nameDB);
 
 mongoose.connection.dropCollection('users', (err, result) => {
-    console.log("*** users collection deleted ***");
-})
+    console.log('*** users collection deleted ***');
+});
 
 const saltRounds = parseInt(process.env.SALT_ROUNDS);
 
-const userPassword = "1234";
+const userPassword = '1234';
 const userPasswordHashed = Bcrypt.hashSync(userPassword, saltRounds);
 
-const adminPassword = "admin";
+const adminPassword = 'admin';
 const adminPasswordHashed = Bcrypt.hashSync(adminPassword, saltRounds);
 
 const rawData = fs.readFileSync('./seeds/raw_data/users.json');
 const users = JSON.parse(rawData);
 
 users.forEach(user => {
-    if (user.role === "ADMIN") {
+    if (user.role === 'ADMIN') {
         user.password = adminPasswordHashed;
     } else {
         user.password = userPasswordHashed;
@@ -48,7 +48,7 @@ for (const user of users) {
 }
 
 if (count === users.length) {
-    console.log("*** users planted succesfully ***");
+    console.log('*** users planted succesfully ***');
 }
 
-mongoose.disconnect()
+mongoose.disconnect();
