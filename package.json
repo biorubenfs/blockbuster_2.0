@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start:dev": "nodemon app.js",
-    "seed": "node ./seeds/users.seed.js && node ./seeds/movies.seed.js && node ./seeds/genres.seed.js && node ./seeds/orders.seed.js"
+    "seed": "node ./seeds/users.seed.js && node ./seeds/movies.seed.js && node ./seeds/genres.seed.js && node ./seeds/orders.seed.js",
+    "eslint": "eslint ."
   },
   "author": "",
   "license": "ISC",
@@ -22,6 +23,9 @@
     "node-cron": "^3.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.14.8",
+    "@babel/eslint-parser": "^7.14.9",
+    "eslint": "^7.32.0",
     "nodemon": "^2.0.12"
   }
 }

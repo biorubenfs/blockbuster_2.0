@@ -9,21 +9,21 @@ const validateOrder = async (userId, movieId) => {
     const user = await User.findById(userId);
 
     if (!user) {
-        throw new Error('User doesn\'t exists')
-    };
+        throw new Error('User doesn\'t exists');
+    }
 
     const movie = await Movie.findById(movieId);
 
     if (!movie) {
         throw new Error('Movie doesn\t exists');
-    };
+    }
 
-    const order = await Order.findOne({ movie_id: movieId, status: 'ACTIVE' })
+    const order = await Order.findOne({ movie_id: movieId, status: 'ACTIVE' });
 
     if (order) {
         throw new Error('User has already an active order with that movie');
     }
-}
+};
 
 export const orderController = {
 
@@ -35,7 +35,7 @@ export const orderController = {
             for await (const order of orders) {
 
                 const today = new Date();
-                const foo = new Date(order.end_date)
+                const foo = new Date(order.end_date);
 
                 if (foo < today) {
                     order.status = 'EXPIRED';
@@ -69,7 +69,7 @@ export const orderController = {
                 status: 'ACTIVE',
                 start_date: startDate.toISOString(),
                 end_date: endDate.toISOString(),
-            }
+            };
 
             const result = await Order.create(newOrder);
 
@@ -81,8 +81,6 @@ export const orderController = {
     },
 
     listUserOrders: async (req, res) => {
-
-        console.log('here')
 
         try {
 
@@ -96,10 +94,6 @@ export const orderController = {
 
             const results = await Order.find({ user_id: userId }).select({ '_id': 0 }).populate('movie_id', 'title');
             // const results = await Order.find({ user_id: userId }).populate('movie_id', 'title');
-
-            console.log(await Movie.findById(results.movie_id));
-
-            console.log(results);
 
             res.json(results.map(formatObject));
 
@@ -139,4 +133,4 @@ export const orderController = {
             res.status(400).json({ message: error.message });
         }
     }
-}
+};

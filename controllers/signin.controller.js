@@ -18,7 +18,7 @@ export const signinController = {
             }
             if (!Bcrypt.compareSync(password, queryUser.password)) {
                 return res.json({ message: 'Incorrect password or email [password]' });
-            };
+            }
 
             const payload = {
                 id: queryUser._id,
@@ -32,7 +32,7 @@ export const signinController = {
             res.json({ token: token });
 
         } catch (error) {
-            res.status(400).json({ message: error.mesage })
+            res.status(400).json({ message: error.mesage });
         }
     }
-}
+};

@@ -12,8 +12,8 @@ const movieSchema = mongoose.Schema({
         createdAt: 'created_at',
         updatedAt: 'updated_at',
     }
-})
+});
 
-const Movie = mongoose.model('movies', movieSchema)
+const Movie = mongoose.model('movies', movieSchema);
 
 export default Movie;

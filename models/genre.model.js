@@ -8,8 +8,8 @@ const genreSchema = mongoose.Schema({
         createdAt: 'created_at',
         updatedAt: 'updated_at',
     }
-})
+});
 
-const Genre = mongoose.model('genres', genreSchema)
+const Genre = mongoose.model('genres', genreSchema);
 
 export default Genre;

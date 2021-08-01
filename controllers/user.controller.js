@@ -1,12 +1,10 @@
 import User from '../models/user.model.js';
 import Bcrypt from 'bcrypt';
-import { formatObject } from '../utils/utils.js'
+import { formatObject } from '../utils/utils.js';
 
 export const userController = {
 
     updateUser: async (req, res) => {
-
-        console.log('aque');
 
         try {
 
@@ -20,9 +18,9 @@ export const userController = {
 
             const body = {};
 
-            if (username) { body.username = username }
-            if (password) { body.password = password }
-            if (req.file.path) { body.profile_picture = req.file.path }
+            if (username) { body.username = username; }
+            if (password) { body.password = password; }
+            if (req.file.path) { body.profile_picture = req.file.path; }
 
             const user = await User.findByIdAndUpdate(userId, body, { new: true });
 
@@ -57,4 +55,4 @@ export const userController = {
             res.status(400).json({ message: error.message });
         }
     }
-}
+};

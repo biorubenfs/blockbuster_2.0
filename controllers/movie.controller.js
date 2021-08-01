@@ -24,7 +24,7 @@ export const movieController = {
             const result = await Movie.findById(req.params.id);
 
             if (!result) {
-                res.status(404).send({ message: "movie not found" });
+                res.status(404).send({ message: 'movie not found' });
             }
             res.json(formatObject(result));
 
@@ -48,19 +48,19 @@ export const movieController = {
             const query = await Movie.find({
                 title: {
                     $regex: queryTerm,
-                    $options: "i"
+                    $options: 'i'
                 }
             });
 
             res.status(200).json(query.map(formatObject));
         } catch (error) {
             res.json({ message: error.message });
-        };
+        }
     },
 
     filterByGenreId: async (req, res) => {
 
-        const genreId = req.params.genreId
+        const genreId = req.params.genreId;
 
         try {
             const results = await Movie.find({ genres_ids: genreId });
@@ -73,7 +73,7 @@ export const movieController = {
     filterByGenreName: async (req, res) => {
 
         try {
-            const genreName = req.params.genreName
+            const genreName = req.params.genreName;
 
             // const genresList = fs.readFileSync('./seeds/raw_data/genres.json');
             // const genres = JSON.parse(genresList);
@@ -82,9 +82,9 @@ export const movieController = {
             // Beware with _id and id in this case. Change: to use const to avoid db query
             const genre = await Genre.findOne({ name: genreName });
             if (!genre) {
-                return res.json({ message: "Genre not found" });
+                return res.json({ message: 'Genre not found' });
             }
-            const results = await Movie.find({ genres_ids: genre.id })
+            const results = await Movie.find({ genres_ids: genre.id });
 
             res.json(results.map(formatObject));
 

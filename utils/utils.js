@@ -14,4 +14,4 @@ export const formatObject = (e) => {
     delete fmt.updated_at;
 
     return fmt;
-}
+};

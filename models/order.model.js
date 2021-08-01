@@ -4,7 +4,7 @@ const STATUS = Object.freeze({
     ACTIVE: 'ACTIVE',
     EXPIRED: 'EXPIRED',
     CANCELED: 'CANCELED'
-})
+});
 
 const orderSchema = mongoose.Schema({
     user_id: {

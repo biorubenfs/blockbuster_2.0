@@ -19,7 +19,7 @@ const getPeliculas = async () => {
                 year = parseInt(date.substring(0, 4));
             } else {
                 year = undefined;
-            };
+            }
 
             // Para cada película, recupera su información (solo nos interesa el poster_path de momento)
             let urlMovie = `https://api.themoviedb.org/3/movie/${movie.id}?api_key=cea68b520beecac6718820e4ac576c3a&language=es-ES`;
@@ -42,24 +42,24 @@ const getPeliculas = async () => {
                 year: year,
                 poster_path: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
                 overview: overview
-            }
+            };
             movies.push(movieObject);
         });
         page++;
     }
 
     console.log(movies);
-}
+};
 
 // getPeliculas();
 
 const getGenres = async () => {
-    const url = "https://api.themoviedb.org/3/genre/movie/list?api_key=cea68b520beecac6718820e4ac576c3a&language=es-ES";
+    const url = 'https://api.themoviedb.org/3/genre/movie/list?api_key=cea68b520beecac6718820e4ac576c3a&language=es-ES';
 
     const objectGenres = await fetch(url);
     const response = await objectGenres.json();
 
     console.log(response);
-}
+};
 
 getGenres();

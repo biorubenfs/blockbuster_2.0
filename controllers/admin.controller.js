@@ -1,8 +1,8 @@
-import Movie from "../models/movie.model.js";
+import Movie from '../models/movie.model.js';
 import User from '../models/user.model.js';
 import Order from '../models/order.model.js';
 
-import { formatObject } from "../utils/utils.js";
+import { formatObject } from '../utils/utils.js';
 
 import Bcrypt from 'bcrypt';
 
@@ -23,14 +23,14 @@ export const adminController = {
             const alreadyUser = await User.findOne({ email: email });
 
             if (alreadyUser) {
-                return res.status(409).json({ message: "email is already registered" });
+                return res.status(409).json({ message: 'email is already registered' });
             }
 
             password = Bcrypt.hashSync(password, parseInt(process.env.SALT_ROUNDS));
 
             const newUser = {
                 username, email, password, role
-            }
+            };
 
             await User.create(newUser);
 
@@ -41,15 +41,15 @@ export const adminController = {
         }
     },
 
-    updateUser: async (req, res) => {
-        // ToDo
-        console.log("return the updated user");
-    },
+    // updateUser: async (req, res) => {
+    //     // ToDo
+    //     console.log('return the updated user');
+    // },
 
-    deleteUser: async (req, res) => {
-        // ToDo
-        console.log("return the deleted user");
-    },
+    // deleteUser: async (req, res) => {
+    //     // ToDo
+    //     console.log('return the deleted user');
+    // },
 
     listUsers: async (req, res) => {
 
@@ -83,20 +83,20 @@ export const adminController = {
     },
 
     /**MOVIES METHODS */
-    addMovie: async (req, res) => {
-        // ToDo
-        console.log("return the new movie");
-    },
+    // addMovie: async (req, res) => {
+    //     // ToDo
+    //     console.log('return the new movie');
+    // },
 
-    updateMovie: async (req, res) => {
-        // ToDo
-        console.log("return the updated movie");
-    },
+    // updateMovie: async (req, res) => {
+    //     // ToDo
+    //     console.log('return the updated movie');
+    // },
 
-    deleteMovie: async (req, res) => {
-        //ToDo
-        console.log("return the delete movie");
-    },
+    // deleteMovie: async (req, res) => {
+    //     //ToDo
+    //     console.log('return the delete movie');
+    // },
 
     /** ORDERS METHODS */
 
@@ -117,4 +117,4 @@ export const adminController = {
 
         }
     },
-}
+};

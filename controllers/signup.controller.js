@@ -25,11 +25,11 @@ export const signupController = {
                 await User.create(newUser);
                 res.send(newUser);
             } else {
-                res.status(409).send({ message: 'User already exists' })
+                res.status(409).send({ message: 'User already exists' });
             }
 
         } catch (error) {
             res.status(400).send({ message: error.message });
         }
     }
-}
+};

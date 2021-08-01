@@ -6,7 +6,7 @@ const checkJWT = (req, res, next) => {
 
     if (!req.headers.authorization) {
         return next('Token not found');
-    };
+    }
 
     if (req.headers.authorization.split(' ')[0] === 'Bearer') {
 
@@ -18,9 +18,9 @@ const checkJWT = (req, res, next) => {
             next();
 
         } catch (error) {
-            return next('Invalid Token')
+            return next('Invalid Token');
         }
-    };
+    }
 };
 
-export default checkJWT
+export default checkJWT;

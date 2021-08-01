@@ -48,11 +48,11 @@ app.use(express.json());
 app.use(cors());
 
 // Master routes
-app.use('/signup', signupRoutes)
+app.use('/signup', signupRoutes);
 app.use('/movies', moviesRoutes);
 app.use('/users', checkJWT, userRoutes);
 app.use('/signin', signinRoutes);
-app.use('/orders', checkJWT, orderRoutes)
+app.use('/orders', checkJWT, orderRoutes);
 
 // admin routes
 app.use('/admin', checkJWT, checkAdmin, adminRoutes);
@@ -62,4 +62,4 @@ cron.schedule('* 23 * * *', orderController.cronUpdatedOrder);
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
-})
+});
