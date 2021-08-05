@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 import connectDatabase from '../config/db_connection.js';
+import environment from './utils/db_seed.js';
+
 import Movie from '../models/movie.model.js';
 
 import fs from 'fs';
@@ -10,7 +12,7 @@ dotenv.config();
 
 const urlDB = process.env.URL_DB;
 const portDB = process.env.PORT_DB;
-const nameDB = process.env.NAME_DB;
+const nameDB = environment(process.env.NODE_ENV);
 
 connectDatabase(urlDB, portDB, nameDB);
 

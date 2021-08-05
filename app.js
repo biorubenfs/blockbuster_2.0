@@ -26,9 +26,12 @@ dotenv.config();
 const port = process.env.PORT;
 
 // Database
+let namedb;
+process.env.NODE_ENV === 'development'
+    ? namedb = process.env.NAME_DB
+    : namedb = process.env.NAME_DB_TEST;
 const urldb = process.env.URL_DB;
 const portdb = process.env.PORT_DB;
-const namedb = process.env.NAME_DB;
 
 connectDatabase(urldb, portdb, namedb);
 
@@ -68,3 +71,5 @@ app.use((req, res) => {
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
+
+export default app;
