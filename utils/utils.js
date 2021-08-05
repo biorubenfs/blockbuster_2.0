@@ -1,7 +1,7 @@
 export const formatObject = (e) => {
 
     /** 
-     * This is neccessary in order to transform the mongoose object to plant JS object.
+     * This is neccessary in order to transform the mongoose object to plain JS object.
      * Alternatively, you can do .lean() after query, in order to convert the mongoose object
      * to javascript plain objet. In this way you can remove the movie.toJSON() and use the
      * movie object as js regular object.

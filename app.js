@@ -60,6 +60,11 @@ app.use('/admin', checkJWT, checkAdmin, adminRoutes);
 // cron job to update order status
 cron.schedule('* 23 * * *', orderController.cronUpdatedOrder);
 
+// Handling errors
+app.use((req, res) => {
+    res.status(404).json({ error: 'Not found' });
+});
+
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
