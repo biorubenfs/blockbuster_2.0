@@ -33,7 +33,9 @@ process.env.NODE_ENV === 'development'
 const urldb = process.env.URL_DB;
 const portdb = process.env.PORT_DB;
 
-connectDatabase(urldb, portdb, namedb);
+if (process.env.NODE_ENV !== 'test') {
+    connectDatabase(urldb, portdb, namedb);
+}
 
 // Initialize Express
 const app = express();
@@ -61,7 +63,8 @@ app.use('/signin', signinRoutes);
 app.use('/orders', checkJWT, orderRoutes);
 
 // admin routes
-app.use('/admin', checkJWT, checkAdmin, adminRoutes);
+// app.use('/admin', checkJWT, checkAdmin, adminRoutes);
+app.use('/admin', adminRoutes); // Testing, remove when mocked database is ready
 
 // cron job to update order status
 cron.schedule('* 23 * * *', orderController.cronUpdatedOrder);

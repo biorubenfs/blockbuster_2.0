@@ -62,6 +62,5 @@ describe('Signin', () => {
                     expect(body.message).equal(errorMessage);
                 });
         });
-    })
-
+    });
 });

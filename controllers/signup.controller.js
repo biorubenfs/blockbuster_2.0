@@ -15,7 +15,7 @@ export const signupController = {
             const email = req.body.email;
 
             // TODO: Validate Password here
-            const password = Bcrypt.hashSync(req.body.password, parseInt(process.env.SALT_ROUNDS))
+            const password = Bcrypt.hashSync(req.body.password, parseInt(process.env.SALT_ROUNDS));
 
 
 
