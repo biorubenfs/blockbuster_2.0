@@ -73,7 +73,7 @@ export const orderController = {
 
             const result = await Order.create(newOrder);
 
-            res.json(formatObject(result));
+            res.status(200).json(formatObject(result));
 
         } catch (error) {
             res.status(400).json({ message: error.message });
@@ -81,6 +81,8 @@ export const orderController = {
     },
 
     listUserOrders: async (req, res) => {
+
+        // TODO queryparams ACTIVE, EXPIRED, CANCELLED
 
         try {
 
