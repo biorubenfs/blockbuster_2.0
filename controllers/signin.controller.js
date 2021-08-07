@@ -8,16 +8,20 @@ export const signinController = {
 
         try {
 
+            if (!req.body.email || !req.body.password) {
+                return res.status(400).json({ message: 'Email and password are required' });
+            }
+
             const email = req.body.email;
             const password = req.body.password;
 
             const queryUser = await User.findOne({ email: email });
 
             if (!queryUser) {
-                return res.json({ message: 'Incorrect password or email [email]' });
+                return res.status(400).json({ message: 'Incorrect password or email [email]' });
             }
             if (!Bcrypt.compareSync(password, queryUser.password)) {
-                return res.json({ message: 'Incorrect password or email [password]' });
+                return res.status(400).json({ message: 'Incorrect password or email [password]' });
             }
 
             const payload = {

@@ -8,7 +8,8 @@
     "start:prod": "NODE_ENV=production node app.js",
     "seed": "node ./seeds/users.seed.js && node ./seeds/movies.seed.js && node ./seeds/genres.seed.js && node ./seeds/orders.seed.js",
     "eslint": "eslint .",
-    "start:test": "NODE_ENV=test node ./seeds/users.seed.js && NODE_ENV=test node ./seeds/movies.seed.js && NODE_ENV=test node ./seeds/genres.seed.js && NODE_ENV=test node ./seeds/orders.seed.js && mocha tests/*.test.js --exit"
+    "start:test": "NODE_ENV=test node ./seeds/users.seed.js && NODE_ENV=test node ./seeds/movies.seed.js && NODE_ENV=test node ./seeds/genres.seed.js && NODE_ENV=test node ./seeds/orders.seed.js && mocha tests/*.test.js --exit",
+    "test": "NODE_ENV=test mocha tests/*.test.js --exit"
   },
   "author": "",
   "license": "ISC",
@@ -31,6 +32,7 @@
     "chai": "^4.3.4",
     "eslint": "^7.32.0",
     "mocha": "^9.0.3",
+    "mongodb-memory-server": "^7.3.4",
     "nodemon": "^2.0.12",
     "supertest": "^6.1.4"
   }

@@ -39,12 +39,15 @@ connectDatabase(urldb, portdb, namedb);
 const app = express();
 
 // Tracking endpoints with morgan
-app.use(morgan((tokens, req, res) => [
-    new Date().toDateString(),
-    tokens.method(req, res),
-    tokens.url(req, res),
-    tokens.status(req, res)
-].join(' ')));
+if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'production') {
+    app.use(morgan((tokens, req, res) => [
+        new Date().toDateString(),
+        tokens.method(req, res),
+        tokens.url(req, res),
+        tokens.status(req, res)
+    ].join(' ')));
+}
+
 
 // Able to receive JSON on body request
 app.use(express.json());
