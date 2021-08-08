@@ -1,9 +1,9 @@
 import request from 'supertest';
-import app from '../app.js';
+import app from '../../app.js';
 
 import { expect } from 'chai';
-import Movie from '../models/movie.model.js';
-import Order from '../models/order.model.js';
+import Movie from '../../models/movie.model.js';
+import Order from '../../models/order.model.js';
 
 describe('Orders', () => {
 

@@ -17,9 +17,9 @@
   },
   "user_admin": {
     "_id": "5dbf6a00ffffffffff000030",
-    "username": "admin34",
-    "email": "admin34@blockbuster.com",
+    "username": "admin",
     "password": "",
+    "email": "admin@blockbuster.com",
     "role": "ADMIN"
   }
 }

@@ -27,13 +27,14 @@ const port = process.env.PORT;
 
 // Database
 let namedb;
+
 process.env.NODE_ENV === 'development'
     ? namedb = process.env.NAME_DB
     : namedb = process.env.NAME_DB_TEST;
 const urldb = process.env.URL_DB;
 const portdb = process.env.PORT_DB;
 
-if (process.env.NODE_ENV !== 'test') {
+if (process.env.NODE_ENV !== 'test_memory') {
     connectDatabase(urldb, portdb, namedb);
 }
 
@@ -63,8 +64,8 @@ app.use('/signin', signinRoutes);
 app.use('/orders', checkJWT, orderRoutes);
 
 // admin routes
-// app.use('/admin', checkJWT, checkAdmin, adminRoutes);
-app.use('/admin', adminRoutes); // Testing, remove when mocked database is ready
+app.use('/admin', checkJWT, checkAdmin, adminRoutes);
+// app.use('/admin', adminRoutes); // Testing, remove when mocked database is ready
 
 // cron job to update order status
 cron.schedule('* 23 * * *', orderController.cronUpdatedOrder);

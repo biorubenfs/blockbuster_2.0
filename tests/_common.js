@@ -1,6 +1,7 @@
 import { MongoMemoryServer as MMS } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
 import fs from 'fs';
+import Bcrypt from 'bcrypt';
 
 import User from '../models/user.model.js';
 import Movie from '../models/movie.model.js';
@@ -36,8 +37,16 @@ export const loadUsersData = async () => {
 
     for await (const user of Object.values(users)) {
         const newUser = new User(user);
+        if (newUser.role === 'ADMIN') {
+            newUser.password = Bcrypt.hashSync('admin', parseInt(process.env.SALT_ROUNDS));
+        } else {
+            newUser.password = Bcrypt.hashSync('1234', parseInt(process.env.SALT_ROUNDS));
+        }
+
         newUser.save();
     }
+
+    return users;
 };
 
 export const loadMoviesData = async () => {

@@ -8,8 +8,8 @@
     "start:prod": "NODE_ENV=production node app.js",
     "seed": "node ./seeds/users.seed.js && node ./seeds/movies.seed.js && node ./seeds/genres.seed.js && node ./seeds/orders.seed.js",
     "eslint": "eslint .",
-    "start:test": "NODE_ENV=test node ./seeds/users.seed.js && NODE_ENV=test node ./seeds/movies.seed.js && NODE_ENV=test node ./seeds/genres.seed.js && NODE_ENV=test node ./seeds/orders.seed.js && mocha tests/*.test.js --exit",
-    "test": "NODE_ENV=test mocha tests/main.test.js tests/admin.test.js tests/movies.test.js  --exit"
+    "start:test": "NODE_ENV=test node ./seeds/users.seed.js && NODE_ENV=test node ./seeds/movies.seed.js && NODE_ENV=test node ./seeds/genres.seed.js && NODE_ENV=test node ./seeds/orders.seed.js && mocha tests/db_tests/*.db.test.js --exit",
+    "test": "NODE_ENV=test_memory mocha tests/*.memory.test.js --exit"
   },
   "author": "",
   "license": "ISC",

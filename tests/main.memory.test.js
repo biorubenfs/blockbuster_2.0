@@ -5,13 +5,13 @@ import pkg from 'mocha';
 const { before, after } = pkg;
 
 before(async () => {
-    console.log('##### BEFORE #####');
+    console.log('>>> Starting tests...');
     dbConnect();
     loadUsersData();
     loadMoviesData();
 });
 
 after(async () => {
-    console.log('##### AFTER #####');
+    console.log('Test are finished');
     dbDisconnect();
 });
