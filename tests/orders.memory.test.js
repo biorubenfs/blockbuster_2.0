@@ -27,10 +27,10 @@ describe('Orders', () => {
     describe('GET /orders', () => {
 
         const users = JSON.parse(fs.readFileSync('./tests/data/users.json'));
-        const userId = Object.values(users).filter(user => user.email === bodyJWT.email);
+        const userId = Object.values(users).find(user => user.email === bodyJWT.email)._id;
 
         const userOrders = JSON.parse(fs.readFileSync('./tests/data/orders.json'));
-        const totalUserOrders = Object.values(userOrders).filter(order => order.user_id === userId[0]._id).length;
+        const totalUserOrders = Object.values(userOrders).filter(order => order.user_id === userId).length;
 
         it('should return user orders', async () => {
 
@@ -44,24 +44,46 @@ describe('Orders', () => {
         });
     });
 
-    // describe('POST /orders', () => {
-    //     it('should create an order', async () => {
+    describe('POST /orders', () => {
+        it('should create an order', async () => {
 
-    //         const movie = await Movie.findOne({ title: 'El infierno de Gabriel Parte 3' });
-    //         // const userId = await User.findOne({ email: 'rubenfs@blockbuster.com' });
+            const movies = JSON.parse(fs.readFileSync('./tests/data/movies.json'));
+            const movieId = Object.values(movies).find(movie => movie.title === 'Un amor contra viento y marea')._id;
 
-    //         const newOrder = {
-    //             movieId: movie._id
-    //         };
+            const newOrder = {
+                movieId: movieId
+            };
 
-    //         await request(app)
-    //             .post('/orders')
-    //             .send(newOrder)
-    //             .set('Authorization', 'Bearer ' + regularUserToken)
-    //             .expect(200)
-    //             .expect(res => {
-    //                 const body = res.body;
-    //             });
-    //     });
-    // });
+            await request(app)
+                .post('/orders')
+                .send(newOrder)
+                .set('Authorization', 'Bearer ' + regularUserToken)
+                .expect(200)
+                .expect(res => {
+                    const body = res.body;
+                });
+        });
+
+        it('should refuse to create an order', async () => {
+
+            const code = 'User has already an active order with that movie';
+
+            const movies = JSON.parse(fs.readFileSync('./tests/data/movies.json'));
+            const movieId = Object.values(movies).find(movie => movie.title === 'El infierno de Gabriel Parte 3')._id;
+
+            const newOrder = {
+                movieId: movieId
+            };
+
+            await request(app)
+                .post('/orders')
+                .send(newOrder)
+                .set('Authorization', 'Bearer ' + regularUserToken)
+                .expect(400)
+                .expect(res => {
+                    const body = res.body;
+                    expect(body.message).to.equal(code);
+                });
+        });
+    });
 });
