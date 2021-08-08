@@ -1,4 +1,4 @@
-import { dbConnect, dbDisconnect, loadMoviesData, loadUsersData } from './_common.js';
+import { dbConnect, dbDisconnect, loadMoviesData, loadOrdersData, loadUsersData } from './_common.js';
 
 import pkg from 'mocha';
 
@@ -9,6 +9,7 @@ before(async () => {
     dbConnect();
     loadUsersData();
     loadMoviesData();
+    loadOrdersData();
 });
 
 after(async () => {

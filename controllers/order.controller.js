@@ -87,17 +87,20 @@ export const orderController = {
         try {
 
             const userId = req.token.id;
+            // console.log(userId);
 
             const user = await User.findById(userId);
 
+            // console.log(user);
+
             if (!user) {
-                return res.json({ message: 'User doesn\'t exists' });
+                return res.status(200).json({ message: 'User doesn\'t exists' });
             }
 
             const results = await Order.find({ user_id: userId }).select({ '_id': 0 }).populate('movie_id', 'title');
             // const results = await Order.find({ user_id: userId }).populate('movie_id', 'title');
 
-            res.json(results.map(formatObject));
+            res.status(200).json(results.map(formatObject));
 
         } catch (error) {
             res.status(400).json({ message: error.message });

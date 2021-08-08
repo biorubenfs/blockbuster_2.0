@@ -48,8 +48,10 @@ describe('Admin', async () => {
             const totalUsers = Object.keys(users).length;
 
             await request(app)
-                .get('/admin/user/?admin=true&user=true')
+                // .get('/admin/user/?admin=true&user=true')
+                .get('/admin/user/')
                 .set('Authorization', 'Bearer ' + adminUserToken)
+                .query({ admin: true, user: true })
                 .expect(200)
                 .expect(res => {
                     const body = res.body;

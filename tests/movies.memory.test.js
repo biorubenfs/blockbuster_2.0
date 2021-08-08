@@ -20,5 +20,21 @@ describe('Movies', () => {
                     expect(body.length).to.equal(totalMovies);
                 });
         });
+
+        it('should return a movie', async () => {
+
+            const moviesList = JSON.parse(fs.readFileSync('./tests/data/movies.json'));
+
+            const movieId = moviesList['movie_01']._id;
+
+            await request(app)
+                .get(`/movies/${movieId}`)
+                .expect(200)
+                .expect(res => {
+                    const body = res.body;
+                    expect(body._id).to.equal(movieId);
+                });
+
+        });
     });
 });
