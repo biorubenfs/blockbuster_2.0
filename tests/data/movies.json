@@ -1,5 +1,6 @@
 {
   "movie_01": {
+    "_id": "5dbf6a00ffffffffff000001",
     "title": "Cadena perpetua",
     "cast": [
       "Tim Robbins",
@@ -13,12 +14,13 @@
       "Jeffrey DeMunn",
       "Larry Brandenburg"
     ],
-    "genres_ids": [18, 80],
+    "genres_ids": [1, 2],
     "year": 1994,
     "poster_path": "https://image.tmdb.org/t/p/w500/dc1fX265fZIIY5Hab8I7CdETyJy.jpg",
     "overview": "Acusado del asesinato de su mujer, Andrew Dufresne, tras ser condenado a cadena perpetua, es enviado a la prisión de Shawshank. Con el paso de los años conseguirá ganarse la confianza del director del centro y el respeto de sus compañeros presidiarios, especialmente de Red, el jefe de la mafia de los sobornos."
   },
   "movie_02": {
+    "_id": "5dbf6a00ffffffffff000002",
     "title": "El infierno de Gabriel Parte 3",
     "cast": [
       "Melanie Zanetti",
@@ -30,12 +32,13 @@
       "Pat Asanti",
       "Julia Barrett-Mitchell"
     ],
-    "genres_ids": [10749, 35],
+    "genres_ids": [1, 3],
     "year": 2020,
     "poster_path": "https://image.tmdb.org/t/p/w500/fYtHxTxlhzD4QWfEbrC1rypysSD.jpg",
     "overview": ""
   },
   "movie_03": {
+    "_id": "5dbf6a00ffffffffff000003",
     "title": "Gabriel's Inferno",
     "cast": [
       "Melanie Zanetti",
@@ -45,9 +48,29 @@
       "Margaux Brooke",
       "Ned Van Zandt"
     ],
-    "genres_ids": [10749],
+    "genres_ids": [2],
     "year": 2020,
     "poster_path": "https://image.tmdb.org/t/p/w500/oyG9TL7FcRP4EZ9Vid6uKzwdndz.jpg",
     "overview": "El enigmático y atractivo profesor Gabriel Emerson, reconocido especialista en Dante, es un hombre torturado por su pasado y orgulloso del prestigio que ha conseguido, aunque también es consciente de que es un imán para el pecado y, en especial, para la lujuria."
+  },
+  "movie_04": {
+    "_id": "5dbf6a00ffffffffff000004",
+    "title": "Un amor contra viento y marea",
+    "cast": [
+      "Shah Rukh Khan",
+      "Kajol",
+      "Amrish Puri",
+      "Anupam Kher",
+      "Satish Shah",
+      "Farida Jalal",
+      "Achala Sachdev",
+      "Himani Shivpuri",
+      "Pooja Ruparel",
+      "Mandira Bedi"
+    ],
+    "genres_ids": [3],
+    "year": 1995,
+    "poster_path": "https://image.tmdb.org/t/p/w500/2CAL2433ZeIihfX1Hb2139CX0pW.jpg",
+    "overview": "Los Singh son una familia india con grandes convicciones culturales de su nación de origen, que emigraron a Reino Unido antes de nacer sus primeros hijos. Uno de ellos querrá casarse con una mujer ajena a su cultura y para ello deberá hacer todos los esfuerzos por convencer a su familia."
   }
 }

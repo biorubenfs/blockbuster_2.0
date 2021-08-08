@@ -1,0 +1,34 @@
+{
+  "order_01": {
+    "_id": "5dbf6a00ffffffffff000100",
+    "user_id": "5dbf6a00ffffffffff000010",
+    "movie_id": "5dbf6a00ffffffffff000001",
+    "start_date": "2021-08-07T18:22:35.368+00:00",
+    "end_date": "2021-08-07T18:22:35.368+00:00",
+    "status": "ACTIVE"
+  },
+  "order_02": {
+    "_id": "5dbf6a00ffffffffff000200",
+    "user_id": "5dbf6a00ffffffffff000010",
+    "movie_id": "5dbf6a00ffffffffff000002",
+    "start_date": "2021-08-07T18:22:35.368+00:00",
+    "end_date": "2021-08-07T18:22:35.368+00:00",
+    "status": "ACTIVE"
+  },
+  "order_03": {
+    "_id": "5dbf6a00ffffffffff000300",
+    "user_id": "5dbf6a00ffffffffff000020",
+    "movie_id": "5dbf6a00ffffffffff000003",
+    "start_date": "2021-08-07T18:22:35.368+00:00",
+    "end_date": "2021-08-07T18:22:35.368+00:00",
+    "status": "EXPIRED"
+  },
+  "order_04": {
+    "_id": "5dbf6a00ffffffffff000400",
+    "user_id": "5dbf6a00ffffffffff000020",
+    "movie_id": "5dbf6a00ffffffffff000004",
+    "start_date": "2021-08-07T18:22:35.368+00:00",
+    "end_date": "2021-08-07T18:22:35.368+00:00",
+    "status": "CANCELED"
+  }
+}

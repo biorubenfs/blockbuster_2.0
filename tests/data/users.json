@@ -1,19 +1,24 @@
 {
   "user_01": {
+    "_id": "5dbf6a00ffffffffff000010",
     "username": "rubenfs",
     "email": "rubenfs@blockbuster.com",
     "password": "",
-    "profile_picture": "assets/profile_pictures/profile_picture_1.jpeg"
+    "profile_picture": "assets/profile_pictures/profile_picture_1.jpeg",
+    "role": "USER"
   },
   "user_02": {
+    "_id": "5dbf6a00ffffffffff000020",
     "username": "pablocd",
     "email": "pablocd@blockbuster.com",
     "password": "",
-    "profile_picture": "assets/profile_pictures/profile_picture_2.jpeg"
+    "profile_picture": "assets/profile_pictures/profile_picture_2.jpeg",
+    "role": "USER"
   },
   "user_admin": {
-    "username": "admin",
-    "email": "admin@blockbuster.com",
+    "_id": "5dbf6a00ffffffffff000030",
+    "username": "admin34",
+    "email": "admin34@blockbuster.com",
     "password": "",
     "role": "ADMIN"
   }
