@@ -17,6 +17,11 @@ import orderRoutes from './routes/order.routes.js';
 import checkJWT from './middlewares/checkJWT.js';
 import checkAdmin from './middlewares/checkAdmin.js';
 
+// https://www.youtube.com/watch?v=apouPYPh_as&ab_channel=BeyondHelloWorld
+import swaggerJsdoc from 'swagger-jsdoc';
+import swaggerUi from 'swagger-ui-express';
+import swaggerOptions from './documentation/swagger.options.js';
+
 import { orderController } from './controllers/order.controller.js';
 
 // Init dotenv
@@ -65,10 +70,15 @@ app.use('/orders', checkJWT, orderRoutes);
 
 // admin routes
 app.use('/admin', checkJWT, checkAdmin, adminRoutes);
-// app.use('/admin', adminRoutes); // Testing, remove when mocked database is ready
 
 // cron job to update order status
 cron.schedule('* 23 * * *', orderController.cronUpdatedOrder);
+
+// Initialize de swaggerjs doc AWAIT is mandatory.
+const specs = await swaggerJsdoc(swaggerOptions(port));
+
+// Swagger endpoint
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
 // Handling errors
 app.use((req, res) => {
