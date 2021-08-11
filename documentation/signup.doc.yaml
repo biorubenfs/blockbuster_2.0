@@ -1,0 +1,37 @@
+components:
+  schemas:
+    userBodySignup:
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        username: Username
+        email: username@email.com
+        password: "1234"
+
+tags:
+  name: signup
+  description: Create an account in Blockbuster
+
+paths:
+  /signup:
+    post:
+      summary: Create an account in Blockbuster
+      tags: [signup]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/userBodySignup"
+
+      responses:
+        200:
+          description: OK
+        400:
+          description: not OK

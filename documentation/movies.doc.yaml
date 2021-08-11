@@ -18,6 +18,8 @@ components:
               type: string
         genres_ids:
           type: array
+          items:
+            type: integer
         overview:
           type: string
       example:
@@ -27,6 +29,20 @@ components:
         cast: [Matthew McConaughey, Anne Hathaway, Jessica Chastain]
         poster_path: https://aslasfpgsdjlksdjglkfgl.asdlkjasdl
         genres_ids: [1, 5]
+
+    movieNotFoundError:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "movie not found"
+
+    movieNotFoundError2:
+      type: object
+      properties:
+        message:
+          type: string
+      example: "movie not found"
 
 tags:
   name: movies
@@ -44,8 +60,7 @@ paths:
             application/json:
               schema:
                 type: array
-                items:
-                  $ref: "#/components/schemas/movie"
+                $ref: "#/components/schemas/movie"
 
   /movies/{id}:
     get:
@@ -67,3 +82,29 @@ paths:
                 $ref: "#/components/schemas/movie"
         404:
           description: the movie was not found
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: "#/components/schema/movieNotFoundError"
+
+  /movies/search/title?title={queryTitle}:
+    get:
+      summary: search a movie by title
+      tags: [movies]
+      parameters:
+        - in: query
+          name: title
+          schema:
+            type: string
+          description: title of the film
+          example: padrino
+      responses:
+        200:
+          description: a list of movies
+          content:
+            application/json:
+              type: array
+              items:
+                schema:
+                  $ref: "#/components/schemas/movie"

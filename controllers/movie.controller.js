@@ -54,7 +54,7 @@ export const movieController = {
 
             res.status(200).json(query.map(formatObject));
         } catch (error) {
-            res.json({ message: error.message });
+            res.status(400).json({ message: error.message });
         }
     },
 
