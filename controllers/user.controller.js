@@ -20,13 +20,14 @@ export const userController = {
 
             if (username) { body.username = username; }
             if (password) { body.password = password; }
-            if (req.file.path) { body.profile_picture = req.file.path; }
+            if (req.file?.path) { body.profile_picture = req.file.path; }
 
             const user = await User.findByIdAndUpdate(userId, body, { new: true });
 
             res.status(200).json(formatObject(user));
 
         } catch (error) {
+            console.log(error);
             res.status(400).json({ message: error.message });
         }
     },

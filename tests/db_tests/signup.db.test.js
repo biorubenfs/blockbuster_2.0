@@ -47,7 +47,9 @@ describe('Signup', () => {
         });
         it('should refuse to create the user: no password provided', async () => {
 
-            const errorMessage = 'Username, email and password are required';
+            // const errorMessage = 'Username, email and password are required';
+            const errorMessage = 'Body validation error';
+
 
             // This body doesn't have all fields required
             const user = {
