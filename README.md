@@ -285,8 +285,29 @@ Explanation text
 
 </details>
 
-## 4. Documentation
+## 4. Documentation :notebook_with_decorative_cover:
 
 ## 5. Testing
 
-## 6. Tools
+## 6. Tools :nut_and_bolt:
+
+### 6.1 Main libraries
+
+- [express](http://expressjs.com/) - nodejs backend framework
+- [mongodb](https://www.mongodb.com/) - database
+- [mongoose](https://mongoosejs.com/) - object modelling tool
+- [jwtoken](https://jwt.io/) - authentication
+- [bcrypt](https://www.npmjs.com/package/bcrypt) - store the password in db
+- [supertest](https://www.npmjs.com/package/supertest) - testing
+- [swagger](https://swagger.io/) - documentation
+- [ajv](https://www.npmjs.com/package/ajv) - json schema validator
+
+### 6.2 Main tools
+
+- [Visual Studio Code](https://code.visualstudio.com/)
+- [Postman](https://www.postman.com/)
+- [Compass](https://www.mongodb.com/products/compass) - GUI for mongodb
+
+## Author :basketball:
+
+Rubén Fernández Santos
