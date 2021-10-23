@@ -97,8 +97,9 @@ export const orderController = {
                 return res.status(200).json({ message: 'User doesn\'t exists' });
             }
 
-            const results = await Order.find({ user_id: userId }).select({ '_id': 0 }).populate('movie_id', 'title');
-            // const results = await Order.find({ user_id: userId }).populate('movie_id', 'title');
+            const results = await Order.find({ user_id: userId })
+                .populate({ path: 'user_id', select: 'email' })
+                .populate({ path: 'movie_id', select: 'title year' });
 
             res.status(200).json(results.map(formatObject));
 

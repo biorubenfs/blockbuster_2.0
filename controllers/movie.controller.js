@@ -1,6 +1,8 @@
 import Movie from '../models/movie.model.js';
 import Genre from '../models/genre.model.js';
 
+import { getAllMoviesService } from '../services/moviesServices.js';
+
 import { formatObject } from '../utils/utils.js';
 
 export const movieController = {
@@ -90,6 +92,27 @@ export const movieController = {
 
         } catch (error) {
             res.status(400).json({ message: error.message });
+        }
+    },
+
+    // Example applying the 3 layer model
+    // Doc: https://sodocumentation.net/node-js/topic/10785/route-controller-service-structure-for-expressjs
+    getAllMovies: async (req, res) => {
+        console.log('in controller ######');
+
+        const title = req.params.title;
+
+        // Validate request parameters, queries using express-validator.
+        const mongoQuery = { title: title };
+        const moreStuff = {};
+
+        try {
+            // We could pass stuff to getAllMoviesService
+            const resultQuery = await getAllMoviesService({ mongoQuery: mongoQuery, moreStuff: moreStuff });
+            return res.status(200).json(resultQuery);
+
+        } catch (error) {
+            return res.status(400).json({ status: 400, message: error.message });
         }
     }
 };
