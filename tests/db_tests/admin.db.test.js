@@ -1,7 +1,6 @@
+import { expect } from 'chai';
 import request from 'supertest';
 import app from '../../app.js';
-import fs from 'fs';
-import { expect } from 'chai';
 
 describe('Admin', async () => {
 
@@ -26,7 +25,10 @@ describe('Admin', async () => {
 
     describe('GET /admin/user', () => {
 
-        it('/admin/user/[admin=true][user=true]', async () => {
+        it('should list all admin users', async () => {
+
+            // Just one admin user is created with seeds
+            const numAdminUsers = 1;
 
             await request(app)
                 .get('/admin/user/?admin=true&user=false')
@@ -34,7 +36,7 @@ describe('Admin', async () => {
                 .expect(200)
                 .expect(res => {
                     const body = res.body;
-                    // console.log(body);
+                    expect(body.length).to.equal(numAdminUsers);
                 });
         });
     });

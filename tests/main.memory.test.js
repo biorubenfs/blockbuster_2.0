@@ -13,6 +13,6 @@ before(async () => {
 });
 
 after(async () => {
-    console.log('Test are finished');
+    console.log('Tests are finished');
     dbDisconnect();
 });

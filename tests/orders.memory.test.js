@@ -1,6 +1,7 @@
 import request from 'supertest';
 import app from '../app.js';
 import fs from 'fs';
+import jwt from 'jsonwebtoken';
 
 import { expect } from 'chai';
 import Movie from '../models/movie.model.js';
@@ -9,6 +10,8 @@ import Order from '../models/order.model.js';
 describe('Orders', () => {
 
     let regularUserToken;
+    let jwtPayload;
+
     const bodyJWT = {
         email: 'rubenfs@blockbuster.com',
         password: '1234'
@@ -21,6 +24,7 @@ describe('Orders', () => {
             .expect(res => {
                 const body = res.body;
                 regularUserToken = body.token;
+                jwtPayload = jwt.decode(body.token);
             });
     });
 
@@ -61,6 +65,9 @@ describe('Orders', () => {
                 .expect(200)
                 .expect(res => {
                     const body = res.body;
+                    expect(body.status).to.equal('ACTIVE');
+                    expect(body.user_id).to.equal(jwtPayload.id);
+                    expect(body.movie_id).to.equal(movieId);
                 });
         });
 

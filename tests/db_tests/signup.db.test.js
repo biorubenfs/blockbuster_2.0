@@ -1,6 +1,5 @@
 import request from 'supertest';
 import app from '../../app.js';
-import fs from 'fs';
 import { expect } from 'chai';
 
 describe('Signup', () => {

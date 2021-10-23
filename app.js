@@ -28,16 +28,19 @@ import { orderController } from './controllers/order.controller.js';
 dotenv.config();
 
 // APP port
-const port = process.env.PORT;
+let port = process.env.PORT;
+if (process.env.NODE_ENV === 'test_memory') {
+    port = 3001;
+}
 
 // Database
 let namedb;
+const urldb = process.env.URL_DB;
+const portdb = process.env.PORT_DB;
 
 process.env.NODE_ENV === 'development'
     ? namedb = process.env.NAME_DB
     : namedb = process.env.NAME_DB_TEST;
-const urldb = process.env.URL_DB;
-const portdb = process.env.PORT_DB;
 
 if (process.env.NODE_ENV !== 'test_memory') {
     connectDatabase(urldb, portdb, namedb);
