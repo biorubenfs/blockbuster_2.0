@@ -3,7 +3,9 @@ import Genre from '../models/genre.model.js';
 
 import { getAllMoviesService } from '../services/moviesServices.js';
 
-import { formatObject } from '../utils/utils.js';
+import { formatObject, getGenreNames } from '../utils/utils.js';
+
+
 
 export const movieController = {
 
@@ -12,6 +14,8 @@ export const movieController = {
             const allMovies = await Movie.find();
 
             const result = allMovies.map(formatObject);
+
+            result.map(movie => movie.genres_ids = getGenreNames(movie.genres_ids));
 
             res.json(result);
 
