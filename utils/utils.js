@@ -18,13 +18,6 @@ export const formatObject = (e) => {
     return fmt;
 };
 
-// export const getGenreNames = async () => {
-
-//     const foo = await Genre.find().select('id name');
-
-//     return foo;
-// };
-
 export const getGenreNames = (idList) => {
 
     const reference = [
