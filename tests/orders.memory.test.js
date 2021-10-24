@@ -4,8 +4,6 @@ import fs from 'fs';
 import jwt from 'jsonwebtoken';
 
 import { expect } from 'chai';
-import Movie from '../models/movie.model.js';
-import Order from '../models/order.model.js';
 
 describe('Orders', () => {
 
