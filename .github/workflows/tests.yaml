@@ -26,5 +26,8 @@ jobs:
       - name: install dependencies
         run: npm install
 
+      - name: verifying eslint
+        run: npm run eslint
+
       - name: running tests
         run: npm run test
