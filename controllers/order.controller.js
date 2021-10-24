@@ -131,6 +131,12 @@ export const orderController = {
             const orderId = req.params.id;
             const userId = req.token.id;
 
+            const user = await User.findById(userId);
+
+            if (!user) {
+                throw new Error('User not found');
+            }
+
             const newStatus = await Order.findOneAndUpdate({ _id: orderId, user_id: userId }, { status: 'CANCELED' }, { new: true });
 
             res.json(newStatus);
