@@ -10,17 +10,23 @@ import { formatObject, getGenreNames } from '../utils/utils.js';
 export const movieController = {
 
     listMovies: async (req, res) => {
+
+        const page = parseInt(req.query.page);
+        const limit = parseInt(req.query.limit);
+        const skip = (page - 1) * limit;
+
         try {
-            const allMovies = await Movie.find();
+            const allMovies = await Movie.find().skip(skip).limit(limit);
+            const total = await Movie.countDocuments();
 
             const result = allMovies.map(formatObject);
 
             result.map(movie => movie.genres_ids = getGenreNames(movie.genres_ids));
 
-            res.json(result);
+            res.json({ movies: result, paginationParams: { page, total, limit } });
 
         } catch (error) {
-            req.status(400).json({ message: error.message });
+            res.status(400).json({ message: error.message });
         }
     },
 
@@ -30,7 +36,8 @@ export const movieController = {
             const result = await Movie.findById(req.params.id);
 
             if (!result) {
-                res.status(404).send({ message: 'movie not found' });
+                res.status(404);
+                throw new Error('movie not found');
             }
             res.json(formatObject(result));
 

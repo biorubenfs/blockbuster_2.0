@@ -3,7 +3,7 @@ import { adminController } from '../controllers/admin.controller.js';
 
 const adminRoutes = Router();
 
-adminRoutes.post('/user', adminController.createUser);          // avalaible
+adminRoutes.post('/user', adminController.createUser);          // available
 adminRoutes.get('/user', adminController.listUsers);            // available
 // adminRoutes.put('/user', adminController.updateUser);
 // adminRoutes.delete('user', adminController.deleteUser);
