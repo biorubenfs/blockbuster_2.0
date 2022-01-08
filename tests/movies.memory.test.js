@@ -6,18 +6,18 @@ import { expect } from 'chai';
 describe('Movies', () => {
 
     describe('GET /movies', () => {
-        it('should list all movies', async () => {
+        it('should list 10 movies', async () => {
 
             const moviesList = JSON.parse(fs.readFileSync('./tests/data/movies.json'));
 
             const totalMovies = Object.keys(moviesList).length;
 
             await request(app)
-                .get('/movies/')
+                .get('/movies?page=1&limit=10')
                 .expect(200)
                 .expect(res => {
                     const body = res.body;
-                    expect(body.length).to.equal(totalMovies);
+                    expect(body.movies.length).to.equal(totalMovies);
                 });
         });
 
